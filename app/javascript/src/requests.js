@@ -72,7 +72,7 @@ export var markTaskComplete = function (successCB, errorCB){
     type: 'PUT',
     url: 'api/tasks/:id/mark_complete?api_key=1',
     data: {
-      tasks: {
+      task: {
         complete: true
       }
     },
@@ -89,7 +89,7 @@ export var markTaskActive = function (successCB, errorCB){
     type: 'PUT',
     url: 'api/tasks/:id/mark_active?api_key=1',
     data: {
-      tasks: {
+      task: {
         complete: false
       }
     },
