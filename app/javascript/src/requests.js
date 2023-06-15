@@ -35,4 +35,65 @@ export var postTask = function (content, successCB, errorCB) {
     $.ajax(request);
   };
   
-//   postTask('this is some task...');
+  //  postTask('this is some task...');
+
+export var updateTask = function (id, successCB, errorCB){
+  var request ={
+    type: 'PUT',
+    url: 'api/tasks/:id?api_key=1',
+    data: {
+      task: {id: id}
+    },
+
+    success: successCB,
+    error: errorCB
+  }
+
+  $.ajax(request);
+};
+
+export var deleteTask = function (id, successCB, errorCB){
+  var request ={
+    type: 'DELETE',
+    url: 'api/tasks/:id?api_key=1',
+    data: {
+      task: {id: id}
+    },
+
+    success: successCB,
+    error: errorCB
+  }
+
+  $.ajax(request);
+
+};
+
+export var markTaskComplete = function (id, successCB, errorCB){
+  var request ={
+    type: 'PUT',
+    url: 'api/tasks/:id/mark_complete?api_key=1',
+    data: {
+      tasks: {id: id}
+    },
+
+    success: successCB,
+    error: errorCB
+  }
+
+  $.ajax(request);
+};
+
+export var markTaskActive = function (id, successCB, errorCB){
+  var request ={
+    type: 'PUT',
+    url: 'api/tasks/:id/mark_active?api_key=1',
+    data: {
+      tasks: {id: id}
+    },
+
+    success: successCB,
+    error: errorCB
+  }
+
+  $.ajax(request);
+};
