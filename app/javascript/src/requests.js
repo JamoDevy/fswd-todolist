@@ -37,12 +37,14 @@ export var postTask = function (content, successCB, errorCB) {
   
   //  postTask('this is some task...');
 
-export var updateTask = function (id, successCB, errorCB){
+export var updateTask = function (content, successCB, errorCB){
   var request ={
     type: 'PUT',
     url: 'api/tasks/:id?api_key=1',
     data: {
-      task: {id: id}
+      task: {
+        content: content 
+      }
     },
 
     success: successCB,
@@ -52,13 +54,10 @@ export var updateTask = function (id, successCB, errorCB){
   $.ajax(request);
 };
 
-export var deleteTask = function (id, successCB, errorCB){
+export var deleteTask = function (successCB, errorCB){
   var request ={
     type: 'DELETE',
     url: 'api/tasks/:id?api_key=1',
-    data: {
-      task: {id: id}
-    },
 
     success: successCB,
     error: errorCB
@@ -68,12 +67,14 @@ export var deleteTask = function (id, successCB, errorCB){
 
 };
 
-export var markTaskComplete = function (id, successCB, errorCB){
+export var markTaskComplete = function (successCB, errorCB){
   var request ={
     type: 'PUT',
     url: 'api/tasks/:id/mark_complete?api_key=1',
     data: {
-      tasks: {id: id}
+      tasks: {
+        complete: true
+      }
     },
 
     success: successCB,
@@ -83,12 +84,14 @@ export var markTaskComplete = function (id, successCB, errorCB){
   $.ajax(request);
 };
 
-export var markTaskActive = function (id, successCB, errorCB){
+export var markTaskActive = function (successCB, errorCB){
   var request ={
     type: 'PUT',
     url: 'api/tasks/:id/mark_active?api_key=1',
     data: {
-      tasks: {id: id}
+      tasks: {
+        complete: false
+      }
     },
 
     success: successCB,

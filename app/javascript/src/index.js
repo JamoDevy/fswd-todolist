@@ -19,11 +19,9 @@ indexTasks(function (response) {
   $("#tasks").html(htmlString);
 });
 
-// postTask(function (response) {
-//   var htmlString = response.tasks.map(function(task) {
-//     return 
-//   })
-// })
+
+
+
 
 
 
