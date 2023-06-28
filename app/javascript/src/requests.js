@@ -1,102 +1,57 @@
-import $ from 'jquery';
-
+import $ from "jquery";
 $.ajaxSetup({
-    headers: {
-      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
+  headers: {
+    "X-CSRF-Token": $('meta[name="csrf-token"]').attr("content"),
+  },
+});
 
-  export var indexTasks = function (successCB, errorCB) {
-    var request = {
-      type: 'GET',
-      url: 'api/tasks?api_key=1',
-      success: successCB,
-      error: errorCB
-    }
-
-  $.ajax(request);
-};
-
-// indexTasks();
-
-export var postTask = function (content, successCB, errorCB) {
-    var request = {
-      type: 'POST',
-      url: 'api/tasks?api_key=1',
-      data: {
-        task: {
-          content: content
-        }
-      },
-      success: successCB,
-      error: errorCB
-    }
-  
-    $.ajax(request);
+// GET ALL TASKS
+export var indexTasks = function (successCB, errorCB) {
+  var request = {
+    type: "GET",
+    url: "api/tasks?api_key=1",
+    success: successCB,
+    error: errorCB,
   };
-  
-  //  postTask('this is some task...');
-
-export var updateTask = function (content, successCB, errorCB){
-  var request ={
-    type: 'PUT',
-    url: 'api/tasks/:id?api_key=1',
-    data: {
-      task: {
-        content: content 
-      }
-    },
-
-    success: successCB,
-    error: errorCB
-  }
-
   $.ajax(request);
 };
 
-export var deleteTask = function (successCB, errorCB){
-  var request ={
-    type: 'DELETE',
-    url: 'api/tasks/:id?api_key=1',
-
-    success: successCB,
-    error: errorCB
-  }
-
-  $.ajax(request);
-
-};
-
-export var markTaskComplete = function (successCB, errorCB){
-  var request ={
-    type: 'PUT',
-    url: 'api/tasks/:id/mark_complete?api_key=1',
+// UPDATING TASK
+export var updateTask = function (id, content, successCB, errorCB) {
+  var request = {
+    type: "PUT",
+    url: "api/tasks/" + id + "?api_key=1",
     data: {
       task: {
-        complete: true
-      }
+        content: content,
+      },
     },
-
     success: successCB,
-    error: errorCB
-  }
-
+    error: errorCB,
+  };
   $.ajax(request);
 };
 
-export var markTaskActive = function (successCB, errorCB){
-  var request ={
-    type: 'PUT',
-    url: 'api/tasks/:id/mark_active?api_key=1',
+// CREATING TASKS
+export var postTask = function (content, successCB, errorCB) {
+  var request = {
+    type: "POST",
+    url: "api/tasks?api_key=1",
     data: {
       task: {
-        complete: false
-      }
+        content: content,
+      },
     },
-
     success: successCB,
-    error: errorCB
-  }
+    error: errorCB,
+  };
+  $.ajax(request);
+};
 
+export var deleteTask = function (id) {
+  var request = {
+    type: "DELETE",
+    url: "api/tasks/" + id + "?api_key=1",
+  };
   $.ajax(request);
 };
