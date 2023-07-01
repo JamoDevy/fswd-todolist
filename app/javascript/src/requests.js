@@ -48,10 +48,22 @@ export var postTask = function (content, successCB, errorCB) {
   $.ajax(request);
 };
 
+// DELETING TASKS
 export var deleteTask = function (id) {
   var request = {
     type: "DELETE",
     url: "api/tasks/" + id + "?api_key=1",
+
+  };
+  $.ajax(request);
+};
+
+// MARKING TASKS ACTIVE/COMPLETED
+export var markTaskActive = function (id) {
+  var request = {
+    type: "PUT",
+    url: "api/tasks/mark_active?/" + id + "api_key=1",
+
   };
   $.ajax(request);
 };
