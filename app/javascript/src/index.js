@@ -72,11 +72,14 @@ $(document).ready(function () {
     });
   });
 
+// When the checkbox changes 
   $(document).on('change', '#taskCheckBox', function () {
     if($("#taskCheckBox").is(":checked")) {
-      markTaskActive($(this).data('id'));
-    } else {
+      
       markTaskComplete($(this).data('id'));
+    } else {
+     
+      markTaskActive($(this).data('id'));
     }
     refreshTasksList();
   });
