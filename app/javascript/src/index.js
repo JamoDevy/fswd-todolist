@@ -18,7 +18,9 @@ function refreshTasksList() {
         " +
         task.content +
         " \
-        <input type='checkbox' id='taskCheckBox' style='float:right'> \
+        <input type='checkbox' class='taskCheckBox' style='float:right'" +
+        (task.completed ? " checked" : "") +
+        "> \
         <button class='btn btn-primary mb-2 remove' style='float:right'>Remove</button> \
         </div>"
       );
@@ -49,40 +51,22 @@ $(document).ready(function () {
     
   });
 
-
-
   // Delete task
-  $(document).on('click', '.remove', function () {
-    deleteTask($('.task').data('id')); 
+  $(document).on('click', '.remove', function() {
+    deleteTask($(this).parent().data('id'));
     refreshTasksList();
   });
 
-
-  
-  // When the checkbox is clicked, call the markTaskActive function to mark the task as active or complete
-  $(document).on('click', '#taskCheckBox', function () {
-    markTaskActive(function (task) {
-      if ($("#taskCheckBox").is(":checked")) {
-        task.complete = false;
-        
-      } else {
-        task.complete = true;
-      }
-      refreshTasksList();
-    });
-  });
-
-// When the checkbox changes 
-  $(document).on('change', '#taskCheckBox', function () {
-    if($("#taskCheckBox").is(":checked")) {
-      
-      markTaskComplete($(this).data('id'));
+  // When the checkbox changes 
+  $(document).on('change', '.taskCheckBox', function() {
+    if ($(this).is(':checked')) {
+      markTaskComplete($(this).parent().data('id'), function(response) {
+        refreshTasksList();
+      });
     } else {
-     
-      markTaskActive($(this).data('id'));
+      markTaskActive($(this).parent().data('id'), function(response) {
+        refreshTasksList();
+      });
     }
-    refreshTasksList();
   });
-  
 });
-
