@@ -58,12 +58,26 @@ export var deleteTask = function (id) {
   $.ajax(request);
 };
 
-// MARKING TASKS ACTIVE/COMPLETED
+// MARKING TASKS ACTIVE
 export var markTaskActive = function (id) {
   var request = {
     type: "PUT",
     url: "api/tasks/mark_active?/" + id + "api_key=1",
+    
+  };
+  $.ajax(request);
+};
 
+// MARKING TASKS COMPLETE
+export var markTaskComplete = function (id) {
+  var request = {
+    type: "PUT",
+    url: "api/tasks/mark_complete?/" + id + "api_key=1",
+    data: {
+      task: {
+        complete: true,
+      },
+    },
   };
   $.ajax(request);
 };

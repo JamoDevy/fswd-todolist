@@ -53,7 +53,7 @@ $(document).ready(function () {
 
   // Delete task
   $(document).on('click', '.remove', function () {
-    console.log($('.task').data('id')); 
+    deleteTask($('.task').data('id')); 
     refreshTasksList();
   });
 
@@ -64,10 +64,22 @@ $(document).ready(function () {
     markTaskActive(function (task) {
       if ($("#taskCheckBox").is(":checked")) {
         task.complete = false;
+        
       } else {
         task.complete = true;
       }
+      refreshTasksList();
     });
   });
+
+  $(document).on('change', '#taskCheckBox', function () {
+    if($("#taskCheckBox").is(":checked")) {
+      markTaskActive($(this).data('id'));
+    } else {
+      markTaskComplete($(this).data('id'));
+    }
+    refreshTasksList();
+  });
+  
 });
 
