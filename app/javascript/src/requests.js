@@ -59,25 +59,27 @@ export var deleteTask = function (id) {
 };
 
 // MARKING TASKS ACTIVE
-export var markTaskActive = function (id) {
+export var markTaskActive = function (id, successCB) {
   var request = {
     type: "PUT",
-    url: "api/tasks/mark_active?/" + id + "api_key=1",
-    
+    url: "api/tasks/" + id + "/mark_active",
+    data: {
+      api_key: 1
+    },
+    success: successCB,
   };
   $.ajax(request);
 };
 
 // MARKING TASKS COMPLETE
-export var markTaskComplete = function (id) {
+export var markTaskComplete = function (id, successCB) {
   var request = {
     type: "PUT",
-    url: "api/tasks/mark_complete?/" + id + "api_key=1",
+    url: "api/tasks/" + id + "/mark_complete",
     data: {
-      task: {
-        complete: true,
-      },
+      api_key: 1
     },
+    success: successCB,
   };
   $.ajax(request);
 };

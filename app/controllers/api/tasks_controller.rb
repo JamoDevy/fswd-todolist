@@ -1,6 +1,6 @@
 module Api
   class TasksController < ApplicationController
-    before_action :validate_user
+    # before_action :validate_user
 
     def show
       user = User.find_by(id: params[:api_key])
